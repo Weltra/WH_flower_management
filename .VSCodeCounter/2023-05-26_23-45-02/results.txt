@@ -1,0 +1,73 @@
+Date : 2023-05-26 23:45:02
+Directory : d:\WH_flower_management
+Total : 30 files,  15453 codes, 60 comments, 217 blanks, all 15730 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          2 |     13,096 |          0 |          2 |     13,098 |
+| Vue                |         15 |      2,098 |         37 |        180 |      2,315 |
+| JavaScript         |         10 |        199 |         10 |         23 |        232 |
+| HTML               |          1 |         33 |          1 |          6 |         40 |
+| Markdown           |          1 |         19 |          0 |          6 |         25 |
+| JSON with Comments |          1 |          8 |         12 |          0 |         20 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                      | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                         |         30 |     15,453 |         60 |        217 |     15,730 |
+| . (Files)                                                 |          7 |     13,139 |         12 |         12 |     13,163 |
+| public                                                    |          1 |         33 |          1 |          6 |         40 |
+| src                                                       |         22 |      2,281 |         47 |        199 |      2,527 |
+| src (Files)                                               |          2 |         34 |          0 |         10 |         44 |
+| src\components                                            |          3 |        455 |         25 |         31 |        511 |
+| src\requests                                              |          1 |         13 |          0 |          0 |         13 |
+| src\router                                                |          1 |         62 |          0 |          4 |         66 |
+| src\store                                                 |          1 |         22 |          0 |          3 |         25 |
+| src\utils                                                 |          3 |         67 |         10 |          6 |         83 |
+| src\views                                                 |         11 |      1,628 |         12 |        145 |      1,785 |
+| src\views (Files)                                         |          3 |        575 |          9 |         71 |        655 |
+| src\views\AbstractTable                                   |          2 |        282 |          1 |         19 |        302 |
+| src\views\PointTable                                      |          3 |        394 |          1 |         26 |        421 |
+| src\views\UserTable                                       |          3 |        377 |          1 |         29 |        407 |
++-----------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                  | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\WH_flower_management\README.md                         | Markdown           |         19 |          0 |          6 |         25 |
+| d:\WH_flower_management\babel.config.js                   | JavaScript         |          5 |          0 |          1 |          6 |
+| d:\WH_flower_management\jsconfig.json                     | JSON with Comments |          8 |         12 |          0 |         20 |
+| d:\WH_flower_management\mapConfig.js                      | JavaScript         |          3 |          0 |          1 |          4 |
+| d:\WH_flower_management\package-lock.json                 | JSON               |     13,027 |          0 |          1 |     13,028 |
+| d:\WH_flower_management\package.json                      | JSON               |         69 |          0 |          1 |         70 |
+| d:\WH_flower_management\public\index.html                 | HTML               |         33 |          1 |          6 |         40 |
+| d:\WH_flower_management\src\App.vue                       | Vue                |         15 |          0 |          4 |         19 |
+| d:\WH_flower_management\src\components\AvatarUpload.vue   | Vue                |        236 |          8 |          9 |        253 |
+| d:\WH_flower_management\src\components\Header.vue         | Vue                |         74 |          0 |          8 |         82 |
+| d:\WH_flower_management\src\components\Heart.vue          | Vue                |        145 |         17 |         14 |        176 |
+| d:\WH_flower_management\src\main.js                       | JavaScript         |         19 |          0 |          6 |         25 |
+| d:\WH_flower_management\src\requests\axios.js             | JavaScript         |         13 |          0 |          0 |         13 |
+| d:\WH_flower_management\src\router\index.js               | JavaScript         |         62 |          0 |          4 |         66 |
+| d:\WH_flower_management\src\store\index.js                | JavaScript         |         22 |          0 |          3 |         25 |
+| d:\WH_flower_management\src\utils\clipboard.js            | JavaScript         |         29 |          0 |          4 |         33 |
+| d:\WH_flower_management\src\utils\oss.js                  | JavaScript         |         38 |         10 |          1 |         49 |
+| d:\WH_flower_management\src\utils\request.js              | JavaScript         |          0 |          0 |          1 |          1 |
+| d:\WH_flower_management\src\views\AbstractTable\Edit.vue  | Vue                |        186 |          0 |         13 |        199 |
+| d:\WH_flower_management\src\views\AbstractTable\index.vue | Vue                |         96 |          1 |          6 |        103 |
+| d:\WH_flower_management\src\views\AbstractView.vue        | Vue                |        209 |          3 |         28 |        240 |
+| d:\WH_flower_management\src\views\AddPoint.vue            | Vue                |        204 |          6 |         24 |        234 |
+| d:\WH_flower_management\src\views\HomeView.vue            | Vue                |        162 |          0 |         19 |        181 |
+| d:\WH_flower_management\src\views\PointTable\Detail.vue   | Vue                |         93 |          0 |          7 |        100 |
+| d:\WH_flower_management\src\views\PointTable\Edit.vue     | Vue                |        186 |          0 |         13 |        199 |
+| d:\WH_flower_management\src\views\PointTable\index.vue    | Vue                |        115 |          1 |          6 |        122 |
+| d:\WH_flower_management\src\views\UserTable\Detail.vue    | Vue                |         77 |          0 |          8 |         85 |
+| d:\WH_flower_management\src\views\UserTable\Edit.vue      | Vue                |        195 |          0 |         14 |        209 |
+| d:\WH_flower_management\src\views\UserTable\index.vue     | Vue                |        105 |          1 |          7 |        113 |
+| d:\WH_flower_management\vue.config.js                     | JavaScript         |          8 |          0 |          2 |         10 |
+| Total                                                     |                    |     15,453 |         60 |        217 |     15,730 |
++-----------------------------------------------------------+--------------------+------------+------------+------------+------------+

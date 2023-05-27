@@ -7,12 +7,10 @@
         </div>
         <nav>
           <ul class="menu" role="list" style="list-style-type:none">
-            <li><router-link to="/Search"><a>搜索</a></router-link></li>
-            <li><router-link to="/Map"><a>地图</a></router-link></li>
-            <li><router-link to="/MapSearch"><a>周边搜索</a></router-link></li>
-            <li><router-link to="/Feedback"><a>我的发现</a></router-link></li>
-            <li><router-link to="/Route"><a>路线展示</a></router-link></li>
-            <li><router-link to="/User"><a>用户中心</a></router-link></li>
+            <li><router-link to="/UserTable"><a>用户管理</a></router-link></li>
+            <li><router-link to="/PointTable"><a>地图点管理</a></router-link></li>
+            <li><router-link to="/AbstractTable"><a>详情页管理</a></router-link></li>
+            <li><router-link to="/AddPoint"><a>添加地图点</a></router-link></li>
           </ul>
         </nav>
       </header>

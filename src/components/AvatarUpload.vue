@@ -3,11 +3,11 @@
   <div class="AvatarUploader">
     <div>
       <span v-if="!avatarUrl" @click="openEditAvatarDialog()" style="
-              display: inline-block;
-              padding: 70px;
-              border: 1px dashed gray;
-              cursor: pointer;
-            ">
+                display: inline-block;
+                padding: 70px;
+                border: 1px dashed gray;
+                cursor: pointer;
+              ">
         <el-tooltip effect="dark" content="上传头像" placement="top">
           <i class="el-icon-plus" />
         </el-tooltip>
@@ -90,7 +90,7 @@ export default {
       options: {
         img: "", //裁剪图片的地址
         info: true, //裁剪框的大小信息
-        outputSize: 0.8, // 裁剪生成图片的质量
+        outputSize: 1, // 裁剪生成图片的质量
         outputType: "", // 裁剪生成图片的格式
         canScale: false, // 图片是否允许滚轮缩放
         autoCrop: true, //是否默认生成截图框

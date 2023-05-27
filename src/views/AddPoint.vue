@@ -3,16 +3,27 @@
         <Header :routelist="routelist"></Header>
         <div class="body">
             <div id="contact-form" class="contact-form">
-                <h1 class="contact-form_title">Contact Form</h1>
+                <h1 class="contact-form_title">添加地图点</h1>
                 <div class="separator"></div>
-                <div v-if="isSending" class="loading">Sendig...</div>
                 <form class="form" @submit="onSubmit">
-                    <input style="background-color: white;" required name="name" v-model='contact.name' placeholder="Name"
-                        type="text" autocomplete="off">
-                    <input style="background-color: white;" required name="email" v-model="contact.email"
-                        placeholder="E-mail" type="email" autocomplete="off">
-                    <textarea style="background-color: white; height: 200px;" name="message" v-model="contact.message"
-                        rows="4" placeholder="Message"></textarea>
+                    <input style="background-color: white;" v-model='point.name' placeholder="赏花点名称" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model='point.description' placeholder="地址" type="text"
+                        autocomplete="off">
+                    <div>
+                    <input style="background-color: white;" v-model="point.longitude" placeholder="经度" type="number"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model="point.latitude" placeholder="纬度" type="number"
+                        autocomplete="off">
+                    </div>
+                    <input style="background-color: white;" v-model="point.ticket" placeholder="门票价格" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model="point.open_time" placeholder="开放时间" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model="point.traffic" placeholder="交通方式" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model="point.flower_class" placeholder="花卉种类" type="text"
+                        autocomplete="off">
                     <p style="color: #5d655f; font-weight: 550; font-size: 17px;"><i class="el-icon-picture"></i> 添加赏花点图片：
                     </p>
                     <div class="upload">
@@ -29,7 +40,7 @@
                             </el-upload>
                         </div>
                     </div>
-                    <button class="button">Send</button>
+                    <button class="button">提交</button>
                 </form>
             </div>
         </div>
@@ -46,18 +57,21 @@ export default {
         return {
             routelist: [
                 { route: '/Home', name: '主页' },
-                { route: '/Search', name: '搜索' },
-                { route: '/Map', name: '地图' },
-                { route: '/MapSearch', name: '周边搜索' },
-                { route: '/Route', name: '路线展示' },
-                { route: '/User', name: '个人中心' }
+                { route: '/UserTable', name: '用户管理' },
+                { route: '/PointTable', name: '地图点管理' },
+                { route: '/AbstractTable', name: '详情页管理' },
             ],
-            contact: {
+            point: {
                 name: '',
-                email: '',
-                message: '',
+                description: '',
+                longitude: '',
+                latitude: '',
+                imgURL: '',
+                traffic: '',
+                open_time: '',
+                ticket: '',
+                flower_class: ''
             },
-            isSending: false,
             file: [],
             fileList: []
         }
@@ -159,7 +173,7 @@ export default {
 .body {
     background: white;
     font-family: 'Roboto', sans-serif;
-    height: 92vh;
+    height: 105vh;
 }
 
 .contact-form {
@@ -187,8 +201,16 @@ export default {
     margin-bottom: 10px;
 }
 
-.contact-form input[type="email"],
-.contact-form input[type="text"],
+.contact-form input[type="number"]
+{
+    width: 49%;
+}
+.contact-form input[type="number"]:last-of-type
+{
+    width: 49%;
+    margin-left: 2%;
+}
+.contact-form input,
 .contact-form textarea {
     border: solid 2px #A9A9A9;
     font-family: 'Roboto', sans-serif;
@@ -216,9 +238,7 @@ export default {
     border: solid 1px #ed556a;
 }
 
-.contact-form input[type="email"],
-.contact-form input[type="text"],
-.contact-form textarea,
+.contact-form input,
 .contact-form .button {
     font-size: 15px;
     border-radius: 3px
