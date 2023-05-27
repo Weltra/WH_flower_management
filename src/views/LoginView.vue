@@ -1,7 +1,6 @@
 <template>
   <div class="body">
     <div class="container" id="login-box">
-
       <div class="form-container sign-up-container">
         <form>
           <h1>注册</h1>
@@ -21,7 +20,7 @@
             <input type="password" v-model.trim="s_password_r">
             <span data-placeholder="Confirm Password"></span>
           </div>
-          <button @click="register">注册</button>
+          <button type="button" @click="register">注册</button>
         </form>
       </div>
       <div class="form-container sign-in-container">
@@ -35,8 +34,8 @@
             <input type="password" v-model.trim="password">
             <span data-placeholder="Password"></span>
           </div>
-          <a href="#">忘记密码？</a>
-          <button @click="login">登录</button>
+          <a @cilck="handlesave"><el-checkbox v-model="st" class="myCheckBox">保持登录状态</el-checkbox></a>
+          <button type="button" @click="login">登录</button>
         </form>
       </div>
 
@@ -53,7 +52,6 @@
             <button class="ghost" id="signUp">注册</button>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -66,53 +64,69 @@ export default {
       email: "",//姓名，用v-model绑定监听，将输入的字符串赋值给name变量
       password: "",//密码
       st: "false",//false为不保存登录
+      s_name: "",
+      s_email: "",
+      s_password: "",
+      s_password_r: "",
     };
   },
   methods: {
-    login: function () {
+    login() {
       if (this.email === localStorage['email'] && this.password === localStorage['password']) {
         localStorage.setItem('s', 'true');
-        this.$router.replace('/Home');//如果输入的名字以及密码正确路由跳转至个人页面
+        this.$message({
+          message: '登录成功！',
+          type: 'success'
+        });
+        this.$router.replace('/Home');
       }
       else if (this.email === '')//名字为空
       {
-        alert('登录邮箱不能为空');
+        this.$message.error('登录邮箱不能为空！');
       }
       else if (this.password === '')//密码为空
       {
-        alert('密码不为空');
+        this.$message.error('密码不为空！');
       }
       else {
-        alert('账号不存在，请注册后登录');//查无此号
+        this.$message.error('账号不存在，请注册后登录！');
       }
     },
-    register: function () {
+    register() {
       if (localStorage['name'] === this.s_name) {
-        alert("用户名已存在");//如果用户名已存在则无法注册
+        this.$message.error('用户名已存在！');
+        this.s_name = ""
+      }
+      else if (localStorage['email'] === this.s_email) {
+        this.$message.error('邮箱已经注册！');
+        this.s_email = ""
       }
       else if (this.s_name === '') {
-        alert("用户名不能为空");
+        this.$message.error('用户名不能为空！');
       }
       else if (this.s_password != this.s_password_r) {
-        alert("两次输入密码应一致！");
-        this.s_password.value = "";
-        this.s_password_r.value = "";
+        this.$message.error('两次输入密码应一致！');
+        this.s_password = "";
+        this.s_password_r = "";
       }
-      else {//将新用户信息存储到localStorage，设置其为当前的用户
+      else {
         localStorage.setItem('name', this.s_name);
         localStorage.setItem('password', this.s_password);
         localStorage.setItem('email', this.s_email);
+        localStorage.setItem('avatar', 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/avatars/v2-e1c0cd5aebfa62318f12b1295d7004f5_r.jpg');
         localStorage.setItem('s', 'true');
-        alert("注册成功");
-        this.$router.replace('/Home');//完成注册后跳转至登录页面
+        this.$message({
+          message: '注册成功！',
+          type: 'success'
+        });
       }
     },
     //点击保持登录状态触发handlesave
-    handlesave: function () {
+    handlesave() {
       this.st = "true";
       localStorage.setItem('s', this.st);
       console.log(localStorage.s);
-    }
+    },
   },
   mounted() {
     //动画
@@ -404,6 +418,27 @@ button.ghost {
 
 .container.container.right-panel-active .overlay-right {
   transform: translateY(20%);
+}
+
+/* 设置选中后的文字颜色 */
+.myCheckBox>>>.el-checkbox__input.is-checked+.el-checkbox__label {
+  color: #333;
+}
+
+/* 设置选中后对勾框的边框和背景颜色 */
+.myCheckBox>>>.el-checkbox__input.is-checked .el-checkbox__inner,
+.myCheckBox .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #f68084
+}
+
+/* 设置checkbox获得焦点后，对勾框的边框颜色 */
+.myCheckBox>>>.el-checkbox__input.is-focus .el-checkbox__inner {
+  border-color: #f68084;
+}
+
+/* 设置鼠标经过对勾框，对勾框边框的颜色 */
+.myCheckBox>>>.el-checkbox__inner:hover {
+  border-color: #f68084;
 }
 </style>
 

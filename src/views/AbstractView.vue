@@ -1,16 +1,16 @@
 <template>
   <div class="Abstract">
     <header>
-      <div class="header-banner">
-        <h1 style="font-size: 40px;">东湖樱园</h1>
+      <div class="header-banner" :style="{ 'background-image': 'url(' + this.background_image + ')' }">
+        <h1 style="font-size: 40px;">{{this.name}}</h1>
       </div>
       <div class="clear"></div>
       <nav>
-        <div class="site-title" style="font-size: 18px;">东湖樱园</div>
+        <div class="site-title" style="font-size: 18px;">{{ this.name }}</div>
         <ul>
           <li><router-link to="/Home"><a>主页</a></router-link></li>
-          <li><router-link to="/Map"><a>搜索</a></router-link></li>
-          <li><router-link to="/Feedback"><a>地图</a></router-link></li>
+          <li><router-link to="/Map"><a>地图</a></router-link></li>
+          <li><router-link to="/MapSearch">周边搜索<a></a></router-link></li>
           <li><router-link to="/Route"><a>游览路线</a></router-link></li>
           <li><router-link to="/User"><a>用户中心</a></router-link></li>
         </ul>
@@ -21,13 +21,18 @@
       <section class="content">
         <article ref="target">
         </article>
-
         <aside>
           <heart :times="100"></heart>
           <el-divider></el-divider>
           <img src="https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/meihua/%E6%A2%85%E8%8A%B1.jpeg">
           <img
             src="https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/meihua/%E7%AB%B9%E5%8F%B6%E6%B5%B7%E6%A2%85%E8%8A%B1%E5%9D%A1.jpg">
+          <el-divider></el-divider>
+          <div class="rate-container">
+            <p style="margin-bottom: 10px; margin-top: 0px;">为该点评分：</p>
+            <el-rate v-model="value2" :colors="colors">
+            </el-rate>
+          </div>
         </aside>
       </section>
     </div>
@@ -36,6 +41,7 @@
       <Comment>
       </Comment>
     </div>
+
   </div>
 </template>
 
@@ -47,6 +53,8 @@ export default {
   components: { Comment, Heart },
   data() {
     return {
+      name:'东湖樱园',
+      background_image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/yinghua/%E5%A0%A4%E8%A7%92%E5%85%AC%E5%9B%AD%E6%A8%B1%E8%8A%B13.jpg',
       content: `
           <p>Wolf vinyl hella, jean shorts disrupt skateboard master cleanse hashtag iPhone. Pop-up bicycle rights
             Brooklyn
@@ -107,7 +115,9 @@ export default {
             lo-fi
             master cleanse selvage Tonx, narwhal tote bag. Helvetica before they sold out put a bird on it slow-carb
             normcore
-            lo-fi.</p>`
+            lo-fi.</p>`,
+      value2: null,
+      colors: ['#99A9BF', '#F7BA2A', '#FF9900']  // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
     }
   },
   mounted() {
@@ -146,7 +156,6 @@ header {
 
 .header-banner {
   background-color: #333;
-  background-image: url('https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/yinghua/%E5%A0%A4%E8%A7%92%E5%85%AC%E5%9B%AD%E6%A8%B1%E8%8A%B13.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -281,5 +290,14 @@ aside img {
   width: 960px;
   margin: 0 auto;
   margin-top: 20px;
+}
+
+.rate-container {
+  text-align: center;
+  width: 100%;
+}
+
+/deep/ .el-rate__icon {
+  font-size: 30px;
 }
 </style>

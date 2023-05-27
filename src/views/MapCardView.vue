@@ -41,7 +41,8 @@ export default {
             routelist: [
                 { route: '/Home', name: '主页' },
                 { route: '/Search', name: '搜索' },
-                { route: '/Feedback', name: '上传测试' },
+                { route: '/MapSearch', name: '周边搜索' },
+                { route: '/Feedback', name: '我的发现' },
                 { route: '/Route', name: '路线展示' },
                 { route: '/User', name: '个人中心' }
             ],
@@ -74,9 +75,14 @@ export default {
             mapInput: "",
             inputSearchVal: "",
             poiList: [],
+            pointname: ''
         };
     },
     created() {
+        window.handleDetail = () => {
+            this.$router.push({ name: 'MapSearch'});
+            this.$store.commit('updateData', this.pointname)
+        }
     },
     computed: {},
     mounted() {
@@ -103,7 +109,7 @@ export default {
                 AMap = map;
                 this.map = new AMap.Map("container", {
                     //center: MY_POSITION,
-                    zoom: 8
+                    zoom: 11
                 });
                 this.map.addControl(new AMap.Scale());
                 this.map.addControl(new AMap.ToolBar());
@@ -135,8 +141,6 @@ export default {
                 let center = [res.position.lng, res.position.lat];
                 this.addHomeMarker(this.map, {
                     position: center,
-                    name: "",
-                    note: "你所在的位置",
                 });
                 // 导入其他点
                 this.loadAMapMarker();
@@ -178,8 +182,7 @@ export default {
             let marker = new AMap.Marker({
                 position: [Number(data.location.lng), Number(data.location.lat)],
                 autoRotation: true,
-                icon: "https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/map-marker.png",
-                angle: 0,
+                icon: "https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/map-marker_mapcard.png",
                 offset: new AMap.Pixel(-16, -32),
             });
             marker.on("click", this.addMarkerTip);
@@ -190,6 +193,7 @@ export default {
         },
         addMarkerTip(e) {
             let data = e.target.getExtData();
+            this.pointname = data.name
             let markerTipContent = `
             <div class="card">
                 <span class="arrow down"></span>
@@ -197,6 +201,8 @@ export default {
                 <div class="link-top"></div>
                 <p><b>地址：</b>${data.address}</p>
                 <p><b>联系电话：</b>${data.tel}</p>
+                <p onclick="handleDetail()">点击搜索周边</p>
+
             </div>
             
             <style scoped>

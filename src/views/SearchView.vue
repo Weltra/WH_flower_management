@@ -4,14 +4,14 @@
     <body>
       <header class="page-header">
         <div class="site-name">
-          <img src="../assets/logo1.png" class="logo">
+          <img src="../assets/logo.png" class="logo">
         </div>
         <div class="menu-container">
           <nav>
             <ul class="menu" role="list" style="list-style-type:none">
               <li><router-link to="/Home"><a>主页</a></router-link></li>
               <li><router-link to="/Map"><a>地图</a></router-link></li>
-              <li><router-link to="/Feedback"><a>上传测试</a></router-link></li>
+              <li><router-link to="/Feedback"><a>我的发现</a></router-link></li>
               <li><router-link to="/Route"><a>路线展示</a></router-link></li>
               <li><router-link to="/User"><a style="font-size: 18px;"><i class="el-icon-user-solid"></i></a></router-link></li>
             </ul>
