@@ -10,6 +10,7 @@
                     <tinymce-editor v-model="content" :disabled="disabled" @onClick="onClick" ref="editor"></tinymce-editor>
                 </div>
                 <el-button type="primary" @click="goBack">返回</el-button>
+                <el-button type="primary" >确认</el-button>
             </div>
         </body>
     </div>
@@ -93,5 +94,9 @@ body {
 ::v-deep .el-button {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.release_tinymce{
+    align-content: center;
 }
 </style>
