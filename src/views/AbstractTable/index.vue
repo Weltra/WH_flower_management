@@ -21,7 +21,7 @@
                     </el-table-column>
                     <el-table-column prop="background_image" label="背景图片" width="200">
                     </el-table-column>
-                    <el-table-column prop="like_times" label="被打卡次数" width="50">
+                    <el-table-column prop="like_times" label="被打卡次数" width="50" >
                     </el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
@@ -77,7 +77,7 @@ export default {
             this.$router.push({ path: "Abstract/" + id });
         },
         edit(id) {
-            this.$router.push({ name: "PointEdit", params: { id } });
+            this.$router.push({ name: "AbstractEdit", params: { id } });
         },
         handleSizeChange(val) {
             console.log(`每页 ${val} 条`);

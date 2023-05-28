@@ -1,95 +1,74 @@
 <template>
     <div>
-        <body>
-            <header>
-                <Header :routelist="routelist"></Header>
-            </header>
-            <div class="Edit">
-                <el-tabs v-model="activeTab" type="border-card">
-                    <el-tab-pane label="账户设置" name="account">
-                        <el-form>
-                            <el-form-item label="用户名">
-                                <el-input v-model.trim="name" />
-                            </el-form-item>
-                            <el-form-item label="电子邮箱">
-                                <el-input v-model.trim="email" />
-                            </el-form-item>
-                            <el-form-item label="更改密码">
-                                <el-input v-model.trim="password" />
-                            </el-form-item>
-                            <el-form-item label="确认更改后的密码">
-                                <el-input v-model.trim="confirm_password" />
-                            </el-form-item>
-                            <el-form-item>
-                                <el-button type="primary" @click="submit">更新账户信息</el-button>
-                            </el-form-item>
-                        </el-form>
-                    </el-tab-pane>
-                    <el-tab-pane label="头像设置" name="change_avatar">
-                        <div class="avatar-change">
-                            <div class="avatar-change-section">
-                                <div class="avatar-change-section-header"><span><i
-                                            class="el-icon-picture-outline"></i>Change
-                                        Avatar</span></div>
-                                <div class="avatar-change-section-body">
-                                    <div class="text-muted">
-                                        点击下方虚线框，挑选你喜欢的头像：
-                                    </div>
-                                    <div style="text-align: center; margin-top: 10px;">
-                                        <AvatarUploader :avatar="avatar" :region="options_OSS.region"
-                                            :accessKeyId="options_OSS.accessKeyId"
-                                            :accessKeySecret="options_OSS.accessKeySecret" :bucket="options_OSS.bucket"
-                                            @avatarUrl="getAvatarUrl" @deleteAvatar="deleteAvatar">
-                                        </AvatarUploader>
-                                    </div>
-                                </div>
-
-                                <div class="avatar-change-section">
-                                    <div class="avatar-change-section-header"><span><i
-                                                class="el-icon-copy-document"></i>Clipboard</span></div>
-                                    <div class="avatar-change-section-body">
-                                        <div class="text-muted">
-                                            点击下方按钮，复制上传头像的链接到剪切板：
-                                        </div>
-                                        <el-input v-model="inputData" placeholder="Please input"
-                                            style="width:400px;max-width:100%;" />
-                                        <el-button style="margin-left: 5px;" type="primary" icon="el-icon-document"
-                                            @click="handleCopy(inputData, $event)">
-                                            点击复制到剪切板
-                                        </el-button>
-                                    </div>
-                                </div>
-                            </div>
+        <header>
+            <Header :routelist="routelist"></Header>
+        </header>
+        <div class="body">
+            <div id="contact-form" class="contact-form">
+                <h1 class="contact-form_title"><i class="el-icon-edit"></i>更新地图点信息</h1>
+                <div class="separator"></div>
+                <div class="form">
+                    <input style="background-color: white;" v-model='point.name' placeholder="赏花点名称" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model='point.description' placeholder="地址" type="text"
+                        autocomplete="off">
+                    <div>
+                        <input style="background-color: white;" v-model="point.longitude" placeholder="经度" type="number"
+                            autocomplete="off">
+                        <input style="background-color: white;" v-model="point.latitude" placeholder="纬度" type="number"
+                            autocomplete="off">
+                    </div>
+                    <input style="background-color: white;" v-model="point.ticket" placeholder="门票价格" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model="point.open_time" placeholder="开放时间" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model="point.traffic" placeholder="交通方式" type="text"
+                        autocomplete="off">
+                    <input style="background-color: white;" v-model="point.flower_class" placeholder="花卉种类" type="text"
+                        autocomplete="off">
+                    <p style="color: #5d655f; font-weight: 550; font-size: 17px;"><i class="el-icon-picture"></i> 添加赏花点图片：
+                    </p>
+                    <div class="upload">
+                        <div class="upload-file">
+                            <ImageUploader :avatar="avatar" :region="options_OSS.region"
+                                :accessKeyId="options_OSS.accessKeyId" :accessKeySecret="options_OSS.accessKeySecret"
+                                :bucket="options_OSS.bucket" @avatarUrl="getAvatarUrl" @deleteAvatar="deleteAvatar">
+                            </ImageUploader>
                         </div>
-                    </el-tab-pane>
-                </el-tabs>
-                <el-button type="primary" @click="goBack">返回</el-button>
+                    </div>
+                    <el-button class="button" @click="submit">提交</el-button>
+                </div>
             </div>
-        </body>
+        </div>
     </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue';
-import AvatarUploader from '@/components/AvatarUpload.vue'
-import clip from '@/utils/clipboard'
+import ImageUploader from '@/components/ImageUpload.vue'
 
 export default {
-    name:'PointEdit',
-    components: { Header, AvatarUploader },
+    components: { Header, ImageUploader },
     data() {
         return {
             routelist: [
                 { route: '/Home', name: '主页' },
-                { route: '/Search', name: '搜索' },
-                { route: '/Map', name: '地图' },
-                { route: '/MapSearch', name: '周边搜索' },
-                { route: '/Route', name: '路线展示' },
-                { route: '/User', name: '个人中心' }
+                { route: '/UserTable', name: '用户管理' },
+                { route: '/PointTable', name: '地图点管理' },
+                { route: '/AbstractTable', name: '详情页管理' },
             ],
-            name: '',
-            email: '',
-            password: '',
+            point: {
+                id: 0,
+                name: '',
+                description: '',
+                longitude: '',
+                latitude: '',
+                imgURL: '',
+                traffic: '',
+                open_time: '',
+                ticket: '',
+                flower_class: ''
+            },
             avatar: '',
             options_OSS: {
                 region: 'oss-cn-hangzhou',
@@ -97,16 +76,11 @@ export default {
                 accessKeySecret: 'arpTCv67LVeoOy2CP8sZqF4DCOOBk6',
                 bucket: 'picture-tjl'
             },
-            inputData: '',
-            activeTab: 'account',
         }
     },
     created() {
-        this.$axios.get('http://127.0.0.1:8000/users/' + this.$route.params.id).then((res) => {
-            this.name = res.data.name;
-            this.email = res.data.email;
-            this.password = res.data.hashed_password;
-            this.avatar = res.data.avatar;
+        this.$axios.get('http://127.0.0.1:8000/points/' + this.$route.params.id).then((res) => {
+            this.point = res.data
         }).catch(err => {
             console.log(err);
             this.$message.error('数据载入失败，请检查网络！');
@@ -114,85 +88,128 @@ export default {
     },
     methods: {
         getAvatarUrl(avatarUrl) {
-            console.log("头像url:", avatarUrl);
-            this.inputData = avatarUrl;
+            console.log("图片url:", avatarUrl);
+            this.point.imgURL = avatarUrl;
         },
         deleteAvatar() {
         },
-        handleCopy(text, event) {
-            clip(text, event)
-        },
-        clipboardSuccess() {
-            this.$message({
-                message: '复制成功！',
-                type: 'success',
-                duration: 1500
-            })
-        },
         submit() {
-            this.$axios.post('http://127.0.0.1:8000/users/').then((res) => {
-                this.name = res.data.name;
-                this.email = res.data.email;
-                this.password = res.data.hashed_password;
-                this.avatar = res.data.avatar;
+            this.$axios.post('http://127.0.0.1:8000/update_map_point/' + this.$route.params.id, this.point
+            ).then((res) => {
+                if (res.data.code == '0000') {
+                    this.$message({
+                        message: '地图点更新成功！',
+                        type: 'success'
+                    });
+                    this.point = {
+                        id: 0,
+                        name: '',
+                        description: '',
+                        longitude: '',
+                        latitude: '',
+                        imgURL: '',
+                        traffic: '',
+                        open_time: '',
+                        ticket: '',
+                        flower_class: ''
+                    }
+                }
+                else if (res.data.code == '0001') {
+                    this.$message.error('参数错误，地图点更新失败！');
+                }
             }).catch(err => {
-                console.log(err);
-                this.$message.error('用户信息更新成功！');
+                console.log(err)
+                this.$message.error('地图点更新失败！');
             })
         },
-        goBack() {
-            this.$router.replace({ name: "UserTable" });
-        }
     }
 }
 </script>
 
-<style lang="scss" scoped>
-body {
-    font-family: system-ui, sans-serif;
+<style scoped>
+@import "open-props/open-props.min.css" layer(open-props);
+@import "open-props/normalize.min.css" layer(open-props);
+
+.body {
     background: white;
-    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    height: 101vh;
 }
 
-.Edit {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+.contact-form {
+    font-family: 16px;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
 }
 
-.text-muted {
-    font-size: 14px;
-    color: #777;
-    margin-top: 10px;
+.contact-form .separator {
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 15px;
+}
+
+.contact-form .form {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+.contact-form_title {
+    color: #333;
+    text-align: left;
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
-body {
-    background-color: white;
+.contact-form input[type="number"] {
+    width: 49%;
 }
 
-.avatar-change {
-    color: #606266;
-    font-size: 16px;
-
-    span {
-        padding-left: 4px;
-    }
-
-    .avatar-change-section {
-        padding: 15px 0;
-
-        .avatar-change-section-header {
-            border-bottom: 1px solid #dfe6ec;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-    }
+.contact-form input[type="number"]:last-of-type {
+    width: 49%;
+    margin-left: 2%;
 }
 
-::v-deep .el-button {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.contact-form input,
+.contact-form textarea {
+    border: solid 2px #A9A9A9;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px 7px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+.contact-form .button {
+    background: #ed556a;
+    border: solid 1px #ed556a;
+    color: white;
+    cursor: pointer;
+    padding: 10px 50px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.contact-form .button:hover {
+    background: #ed556a;
+    border: solid 1px #ed556a;
+}
+
+.contact-form input,
+.contact-form .button {
+    font-size: 15px;
+    border-radius: 3px
+}
+
+.upload-file {
+    position: relative;
+    height: 180px;
+    width: 360px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 </style>
+

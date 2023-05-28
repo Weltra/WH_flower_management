@@ -1,10 +1,10 @@
 <template>
     <div>
+        <header>
+            <Header :routelist="routelist"></Header>
+        </header>
 
         <body>
-            <header>
-                <Header :routelist="routelist"></Header>
-            </header>
             <div>
                 <el-table :data="points.slice((currentPage - 1) * pageSize, currentPage * pageSize)" stripe
                     v-loading="loading" :border="true" :show-overflow-tooltip="true"
@@ -108,6 +108,10 @@ body {
     font-family: system-ui, sans-serif;
     background: white;
     min-height: 100vh;
+}
+
+.pagination {
+    margin-bottom: 20px;
 }
 </style>
   

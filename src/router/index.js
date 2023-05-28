@@ -55,6 +55,16 @@ const routes = [
     path: "/UserEdit/:id",
     name: "UserEdit",
     component: resolve => require(['../views/UserTable/Edit.vue'], resolve),
+  },
+  {
+    path: "/PointEdit/:id",
+    name: "PointEdit",
+    component: resolve => require(['../views/PointTable/Edit.vue'], resolve),
+  },
+  {
+    path: "/AbstractEdit/:id",
+    name: "AbstractEdit",
+    component: resolve => require(['../views/AbstractTable/Edit.vue'], resolve),
   }
 ]
 

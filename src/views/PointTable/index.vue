@@ -1,10 +1,10 @@
 <template>
     <div>
+        <header>
+            <Header :routelist="routelist"></Header>
+        </header>
 
         <body>
-            <header>
-                <Header :routelist="routelist"></Header>
-            </header>
             <div>
                 <el-table :data="points.slice((currentPage - 1) * pageSize, currentPage * pageSize)" stripe
                     v-loading="loading" :border="true" :show-overflow-tooltip="true"
@@ -84,7 +84,7 @@ export default {
             this.$router.push({ path: "PointDetail/" + id });
         },
         edit(id) {
-            this.$router.push({ name: "PointEdit", params: { id } });
+            this.$router.push({ path: "PointEdit/" + id });
         },
         del(id) {
             this.$axios.post('http://127.0.0.1:8000/delete_map_point/' + id).then(() => {

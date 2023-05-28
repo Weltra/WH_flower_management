@@ -11,6 +11,7 @@
             <li><router-link to="/PointTable"><a>地图点管理</a></router-link></li>
             <li><router-link to="/AbstractTable"><a>详情页管理</a></router-link></li>
             <li><router-link to="/AddPoint"><a>添加地图点</a></router-link></li>
+            <li><router-link to="#"><a>坐标拾取</a></router-link></li>
           </ul>
         </nav>
       </header>

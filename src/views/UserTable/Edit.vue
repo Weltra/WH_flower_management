@@ -67,7 +67,8 @@
                                         <div class="text-muted">
                                             点击下方按钮，提交更改到数据库：
                                         </div>
-                                        <el-button style="margin-left: 5px;" type="primary">提交到数据库</el-button>
+                                        <el-button style="margin-left: 5px;" type="primary"
+                                            @click="changeavatar">提交到数据库</el-button>
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +100,7 @@ export default {
             name: '',
             email: '',
             password: '',
+            confirm_password: '',
             avatar: '',
             options_OSS: {
                 region: 'oss-cn-hangzhou',
@@ -108,6 +110,11 @@ export default {
             },
             inputData: '',
             activeTab: 'account',
+            user: {
+                name: '',
+                email: '',
+                password: '',
+            }
         }
     },
     created() {
@@ -139,18 +146,65 @@ export default {
             })
         },
         submit() {
-            this.$axios.post('http://127.0.0.1:8000/users/').then((res) => {
-                this.name = res.data.name;
-                this.email = res.data.email;
-                this.password = res.data.hashed_password;
-                this.avatar = res.data.avatar;
-            }).catch(err => {
-                console.log(err);
-                this.$message.error('用户信息更新成功！');
-            })
+            if (this.email === '') {
+                this.$message.error('邮箱不能为空！');
+            }
+            else if (this.name === '') {
+                this.$message.error('用户名不能为空！');
+            }
+            else if (this.confirm_password != this.password) {
+                this.$message.error('两次输入的密码应一致！');
+            }
+            else {
+                this.user.name = this.name
+                this.user.email = this.email
+                this.user.password = this.password
+                this.$axios.post('http://127.0.0.1:8000/update_user_info/' + this.$route.params.id, this.user).then((res) => {
+                    if (res.data.code == '0000') {
+                        this.$message({
+                            message: '用户信息更新成功！',
+                            type: 'success'
+                        });
+                        this.$axios.get('http://127.0.0.1:8000/users/' + this.$route.params.id).then((res) => {
+                            this.name = res.data.name;
+                            this.email = res.data.email;
+                            this.password = res.data.hashed_password;
+                            this.avatar = res.data.avatar;
+                        }).catch(err => {
+                            console.log(err);
+                            this.$message.error('数据载入失败，请检查网络！');
+                        })
+                    }
+                    else if (res.data.code == '0001') {
+                        this.$message.error('参数错误，用户信息更新失败！');
+                    }
+                }).catch(err => {
+                    console.log(err);
+                    this.$message.error('用户信息更新失败！');
+                })
+            }
         },
         goBack() {
             this.$router.replace({ name: "UserTable" });
+        },
+        changeavatar() {
+            this.$axios.post('http://127.0.0.1:8000/update_user_avatar/', {
+                email: this.email,
+                avatar: this.inputData
+            }).then((res) => {
+                if (res.data.code == '0000') {
+                    this.$message({
+                        message: '用户头像更新成功！',
+                        type: 'success'
+                    });
+                }
+                else if (res.data.code == '0001') {
+                    this.$message.error('参数错误，用户头像更新失败！');
+                }
+            }).catch(err => {
+                console.log(err);
+                this.$message.error('用户头像更新失败！');
+            })
         }
     }
 }
