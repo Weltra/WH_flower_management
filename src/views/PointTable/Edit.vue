@@ -56,6 +56,7 @@ export default {
                 { route: '/UserTable', name: '用户管理' },
                 { route: '/PointTable', name: '地图点管理' },
                 { route: '/AbstractTable', name: '详情页管理' },
+                { route: '/PickPoint', name: '坐标拾取' }
             ],
             point: {
                 id: 0,

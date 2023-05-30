@@ -9,10 +9,11 @@
         <div class="site-title" style="font-size: 18px;">{{ this.name }}</div>
         <ul>
           <li><router-link to="/Home"><a>主页</a></router-link></li>
-          <li><router-link to="/Map"><a>地图</a></router-link></li>
-          <li><router-link to="/MapSearch">周边搜索<a></a></router-link></li>
-          <li><router-link to="/Route"><a>游览路线</a></router-link></li>
-          <li><router-link to="/User"><a>用户中心</a></router-link></li>
+          <li><router-link to="/UserTable"><a>用户管理</a></router-link></li>
+          <li><router-link to="/PointTable"><a>地图点管理</a></router-link></li>
+          <li><router-link to="/AbstractTable"><a>详情页管理</a></router-link></li>
+          <li><router-link to="/AddPoint"><a>添加地图点</a></router-link></li>
+          <li><router-link to="/PickPoint"><a>坐标拾取</a></router-link></li>
         </ul>
       </nav>
     </header>
@@ -37,7 +38,7 @@
 import $ from 'jquery'
 import Heart from '@/components/Heart.vue';
 export default {
-  components: {  Heart },
+  components: { Heart },
   data() {
     return {
       name: '东湖樱园',

@@ -10,7 +10,7 @@
                     <tinymce-editor v-model="content" :disabled="disabled" @onClick="onClick" ref="editor"></tinymce-editor>
                 </div>
                 <el-button type="primary" @click="goBack">返回</el-button>
-                <el-button type="primary" >确认</el-button>
+                <el-button type="primary" @click="submit">确认</el-button>
             </div>
         </body>
     </div>
@@ -27,13 +27,12 @@ export default {
         return {
             routelist: [
                 { route: '/Home', name: '主页' },
-                { route: '/Search', name: '搜索' },
-                { route: '/Map', name: '地图' },
-                { route: '/MapSearch', name: '周边搜索' },
-                { route: '/Route', name: '路线展示' },
-                { route: '/User', name: '个人中心' }
+                { route: '/UserTable', name: '用户管理' },
+                { route: '/PointTable', name: '地图点管理' },
+                { route: '/AddPoint', name: '添加地图点' },
+                { route: '/PickPoint', name: '坐标拾取' }
             ],
-            content: 'Welcome to Use Huaweintel Editor',
+            content: '',
             disabled: false,
             name: '',
             background_image: '',
@@ -73,6 +72,31 @@ export default {
         // 清空内容
         clear() {
             this.$refs.editor.clear()
+        },
+        submit() {
+            console.log(this.content)
+            let u_content = {
+                article_content: this.content
+            }
+            if (this.content == '') {
+                this.$message.error('详情页内容不能为空！');
+            }
+            else {
+                this.$axios.post('http://127.0.0.1:8000/update_abstract_content/' + this.$route.params.id, u_content).then((res) => {
+                    if (res.data.code == '0000') {
+                        this.$message({
+                            message: '详情页内容更新成功！',
+                            type: 'success'
+                        });
+                    }
+                    else if (res.data.code == '0001') {
+                        this.$message.error('参数错误，详情页内容更新失败！');
+                    }
+                }).catch(err => {
+                    console.log(err);
+                    this.$message.error('详情页内容更新失败！');
+                })
+            }
         }
     }
 }
@@ -94,9 +118,5 @@ body {
 ::v-deep .el-button {
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.release_tinymce{
-    align-content: center;
 }
 </style>

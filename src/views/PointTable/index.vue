@@ -60,6 +60,7 @@ export default {
                 { route: '/UserTable', name: '用户管理' },
                 { route: '/AbstractTable', name: '详情页管理' },
                 { route: '/AddPoint', name: '添加地图点' },
+                { route: '/PickPoint', name: '坐标拾取' }
             ],
             points: [],
             currentPage: 1, // 当前页码
