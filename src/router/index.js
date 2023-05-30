@@ -65,6 +65,11 @@ const routes = [
     path: "/AbstractEdit/:id",
     name: "AbstractEdit",
     component: resolve => require(['../views/AbstractTable/Edit.vue'], resolve),
+  },
+  {
+    path: "/PickPoint",
+    name: "PickPoint",
+    component: resolve => require(['../views/PickPoint.vue'], resolve),
   }
 ]
 
