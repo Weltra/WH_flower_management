@@ -50,8 +50,8 @@ export default {
         return {
             // 初始化配置
             init: {
-                height: 550,
-                width: 1400,
+                height: 700,
+                width: 1480,
                 plugins: this.plugins,
                 toolbar: this.toolbar,
                 branding: false,
@@ -115,4 +115,3 @@ export default {
 }
 
 </script>
-  
