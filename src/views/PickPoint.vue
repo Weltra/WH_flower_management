@@ -18,7 +18,8 @@
                 </div>
                 <div class="mapcard">
                     <label>坐标：</label>
-                    <el-input v-model="inputData" size="small " placeholder="Please input" style="width:200px;max-width:100%;" />
+                    <el-input v-model="inputData" size="small " placeholder="Please input"
+                        style="width:200px;max-width:100%;" />
                     <el-button style="margin-left: 5px; " type="primary" icon="el-icon-document" size="small "
                         @click="handleCopy(inputData, $event)">
                         复制
@@ -35,9 +36,9 @@ import AMapLoader from '@amap/amap-jsapi-loader';
 
 import mapConfig from "../../mapConfig";
 import Header from '@/components/Header.vue';
+import clip from '@/utils/clipboard'
 
 let AMap = null;
-//let self = null;
 
 export default {
     name: "PickPoint",
@@ -48,6 +49,7 @@ export default {
                 { route: '/Home', name: '主页' },
                 { route: '/UserTable', name: '用户管理' },
                 { route: '/PointTable', name: '地图点管理' },
+                { route: '/AbstractTable', name: '详情页管理' },
                 { route: '/AddPoint', name: '添加地图点' },
             ],
             map: null,
@@ -124,7 +126,7 @@ export default {
             });
             marker.setMap(this.map);
             console.log([Number(data.location.lng), Number(data.location.lat)])
-            this.inputData = [Number(data.location.lng), Number(data.location.lat)]
+            this.inputData = [Number(data.location.lng), Number(data.location.lat)].join(",")
             this.map.setFitView();
             this.markerList.push(marker);
         },
@@ -149,11 +151,14 @@ export default {
                     cur.showsearchResult = false;
                     cur.poiList = [];
                     cur.$message({
-                        message: "没有查到结果",
+                        message: "没有查到结果！",
                         type: "warning",
                     });
                 }
             });
+        },
+        handleCopy(text, event) {
+            clip(text, event)
         },
     },
     beforeDestroy() {
