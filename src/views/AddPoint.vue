@@ -46,6 +46,7 @@
 <script>
 import Header from '@/components/Header.vue';
 import ImageUploader from '@/components/ImageUpload.vue'
+import ossConfig from '@/utils/ossConfig';
 
 export default {
     components: { Header, ImageUploader },
@@ -56,6 +57,7 @@ export default {
                 { route: '/UserTable', name: '用户管理' },
                 { route: '/PointTable', name: '地图点管理' },
                 { route: '/AbstractTable', name: '详情页管理' },
+                { route: '/PickPoint', name: '坐标拾取' },
             ],
             point: {
                 name: '',
@@ -69,12 +71,7 @@ export default {
                 flower_class: ''
             },
             avatar: '',
-            options_OSS: {
-                region: 'oss-cn-hangzhou',
-                accessKeyId: 'LTAI5tFQrt6TNg6k2SoRtnmW',
-                accessKeySecret: 'arpTCv67LVeoOy2CP8sZqF4DCOOBk6',
-                bucket: 'picture-tjl'
-            },
+            options_OSS: ossConfig.options_OSS
         }
     },
     methods: {
