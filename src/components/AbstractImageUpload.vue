@@ -8,11 +8,13 @@
                             border: 2px dashed gray;
                             cursor: pointer;
                             border-radius: 5px;
-                            width: 200px;
-                            height: 200px;
+                            width: 240px;
+                            height: 240px;
+                            text-align: center;
+                            
                           ">
         <el-tooltip effect="dark" content="上传图片" placement="top">
-          <i class="el-icon-plus" style="font-size: 60px; font-weight: 100;"></i>
+          <i class="el-icon-plus" style="font-size: 40px; line-height:100px;"></i>
         </el-tooltip>
       </span>
 
@@ -93,7 +95,7 @@ export default {
         autoCrop: true, //是否默认生成截图框
         autoCropWidth: 400, //默认生成截图框宽度
         autoCropHeight: 400,
-        fixedBox: true, // 固定截图框大小 是否允许改变
+        fixedBox: false, // 固定截图框大小 是否允许改变
         fixed: true, //是否开启截图框宽高固定比例
         fixedNumber: [1, 1], //截图框的宽高比例
         original: true, // 上传图片按照原始比例渲染

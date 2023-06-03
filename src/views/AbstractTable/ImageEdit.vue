@@ -21,21 +21,61 @@
     <div class="body">
       <section class="content">
         <article>
-          <AbstractImageUpload :avatar="bg_image_upload" :region="options_OSS.region" :accessKeyId="options_OSS.accessKeyId"
-            :accessKeySecret="options_OSS.accessKeySecret" :bucket="options_OSS.bucket" @avatarUrl="getAvatarUrl"
-            @deleteAvatar="deleteAvatar"></AbstractImageUpload>
-          <AbstractImageUpload :avatar="bg_image_upload" :region="options_OSS.region" :accessKeyId="options_OSS.accessKeyId"
-            :accessKeySecret="options_OSS.accessKeySecret" :bucket="options_OSS.bucket" @avatarUrl="getAvatarUrl"
-            @deleteAvatar="deleteAvatar"></AbstractImageUpload>
-          <AbstractImageUpload :avatar="bg_image_upload" :region="options_OSS.region" :accessKeyId="options_OSS.accessKeyId"
-            :accessKeySecret="options_OSS.accessKeySecret" :bucket="options_OSS.bucket" @avatarUrl="getAvatarUrl"
-            @deleteAvatar="deleteAvatar"></AbstractImageUpload>
+          <div class="avatar-change">
+            <div class="avatar-change-section">
+              <div class="avatar-change-section-header"><span><i class="el-icon-picture"></i>更改背景图片
+                </span></div>
+              <div class="avatar-change-section-body">
+                <div class="text-muted">
+                  上传背景图片到阿里云Oss：
+                </div>
+                <div style="text-align: center; margin-top: 10px;">
+                  <AbstractImageUpload :avatar="bg_image_upload" :region="options_OSS.region"
+                    :accessKeyId="options_OSS.accessKeyId" :accessKeySecret="options_OSS.accessKeySecret"
+                    :bucket="options_OSS.bucket" @avatarUrl="getAvatarUrl" @deleteAvatar="deleteAvatar">
+                  </AbstractImageUpload>
+                </div>
+              </div>
+
+              <div class="avatar-change-section">
+                <div class="avatar-change-section-header"><span><i class="el-icon-picture"></i>更改侧边栏上部图片</span>
+                </div>
+                <div class="avatar-change-section-body">
+                  <div class="text-muted">
+                    上传侧边栏上部图片到阿里云Oss：
+                  </div>
+                  <div style="text-align: center; margin-top: 10px;">
+                    <AbstractImageUpload :avatar="bg_image_upload" :region="options_OSS.region"
+                      :accessKeyId="options_OSS.accessKeyId" :accessKeySecret="options_OSS.accessKeySecret"
+                      :bucket="options_OSS.bucket" @avatarUrl="getAvatarUrl" @deleteAvatar="deleteAvatar">
+                    </AbstractImageUpload>
+                  </div>
+                </div>
+              </div>
+              <div class="avatar-change-section">
+                <div class="avatar-change-section-header"><span><i class="el-icon-picture"></i>更改侧边栏下部图片</span>
+                </div>
+                <div class="avatar-change-section-body">
+                  <div class="text-muted">
+                    上传侧边栏下部图片到阿里云Oss：
+                  </div>
+                  <div style="text-align: center; margin-top: 10px;">
+                    <AbstractImageUpload :avatar="bg_image_upload" :region="options_OSS.region"
+                      :accessKeyId="options_OSS.accessKeyId" :accessKeySecret="options_OSS.accessKeySecret"
+                      :bucket="options_OSS.bucket" @avatarUrl="getAvatarUrl" @deleteAvatar="deleteAvatar">
+                    </AbstractImageUpload>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
         <aside>
-          <el-divider></el-divider>
           <img :src="panel_imgURL_top">
           <img :src="panel_imgURL_bottom">
           <el-divider></el-divider>
+          <el-button type="primary" @click="goBack">返回</el-button>
+          <el-button type="primary" @click="submit">确认</el-button>
         </aside>
       </section>
     </div>
@@ -90,6 +130,9 @@ export default {
     },
     getAvatarUrl(avatarUrl) {
       console.log("图片url:", avatarUrl);
+    },
+    goBack() {
+      this.$router.replace({ name: "AbstractTable" });
     },
   }
 }
@@ -237,5 +280,26 @@ aside img {
   height: 240px;
   object-fit: cover;
   margin-bottom: 10px;
+}
+
+.avatar-change {
+  color: #606266;
+  font-size: 16px;
+
+  span {
+    padding-left: 4px;
+  }
+
+  .avatar-change-section {
+    padding: 15px 0;
+
+    .avatar-change-section-header {
+      border-bottom: 1px solid #dfe6ec;
+      width: 95%;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  }
 }
 </style>
