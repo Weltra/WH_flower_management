@@ -85,6 +85,7 @@
 import Header from '@/components/Header.vue';
 import AvatarUploader from '@/components/AvatarUpload.vue'
 import clip from '@/utils/clipboard'
+import ossConfig from '@/utils/ossConfig';
 
 export default {
     name: 'UserEdit',
@@ -103,12 +104,7 @@ export default {
             password: '',
             confirm_password: '',
             avatar: '',
-            options_OSS: {
-                region: 'oss-cn-hangzhou',
-                accessKeyId: 'LTAI5tFQrt6TNg6k2SoRtnmW',
-                accessKeySecret: 'arpTCv67LVeoOy2CP8sZqF4DCOOBk6',
-                bucket: 'picture-tjl'
-            },
+            options_OSS: ossConfig.options_OSS,
             inputData: '',
             activeTab: 'account',
             user: {
