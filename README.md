@@ -1,4 +1,4 @@
-# wuhan_flower
+# “江城寻花”武汉赏花游览系统后台管理部分
 
 ## Project setup
 ```
