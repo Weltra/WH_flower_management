@@ -21,11 +21,12 @@
                     </el-table-column>
                     <el-table-column prop="background_image" label="背景图片" width="200">
                     </el-table-column>
-                    <el-table-column prop="like_times" label="被打卡次数" width="50" >
+                    <el-table-column prop="like_times" label="被打卡次数" width="50">
                     </el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <el-button type="success" size="small" @click="detail(scope.row.id)">详情</el-button>
+                            <el-button type="primary" size="small" @click="Imageedit(scope.row.id)">图片</el-button>
                             <el-button type="primary" size="small" @click="edit(scope.row.id)">编辑</el-button>
                         </template>
                     </el-table-column>
@@ -75,10 +76,13 @@ export default {
     },
     methods: {
         detail(id) {
-            this.$router.push({ path: "Abstract/" + id });
+            this.$router.push({ name: "Abstract", params: { id } });
         },
         edit(id) {
             this.$router.push({ name: "AbstractEdit", params: { id } });
+        },
+        Imageedit(id) {
+            this.$router.push({ name: "AbstractImageEdit", params: { id } });
         },
         handleSizeChange(val) {
             console.log(`每页 ${val} 条`);
