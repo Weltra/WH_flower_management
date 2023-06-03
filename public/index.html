@@ -25,13 +25,6 @@
     securityJsCode: 'faf9d97f30dcb880d4f6069aa558e22f',
   }
   // Error log statistic
-  window.addEventListener('error', function onError(e) {
-    // Ignore ResizeObserver error
-    if (e.message === 'ResizeObserver loop limit exceeded') {
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-    }
-  });
 </script>
 
 </html>
