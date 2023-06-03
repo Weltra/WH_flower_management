@@ -70,7 +70,12 @@ const routes = [
     path: "/PickPoint",
     name: "PickPoint",
     component: resolve => require(['../views/PickPoint.vue'], resolve),
-  }
+  },
+  {
+    path: "/AbstractImageEdit/:id",
+    name: "AbstractImageEdit",
+    component: resolve => require(['../views/AbstractTable/ImageEdit.vue'], resolve),
+  },
 ]
 
 const router = new VueRouter({
