@@ -1,32 +1,46 @@
 <template>
   <div class="Abstract">
     <header>
-      <div class="header-banner" :style="{ 'background-image': 'url(' + this.background_image + ')' }">
-        <h1 style="font-size: 40px;">{{ this.name }}</h1>
+      <div
+        class="header-banner"
+        :style="{ 'background-image': 'url(' + this.background_image + ')' }"
+      >
+        <h1 style="font-size: 40px">{{ this.name }}</h1>
       </div>
       <div class="clear"></div>
       <nav>
-        <div class="site-title" style="font-size: 18px;">{{ this.name }}</div>
+        <div class="site-title" style="font-size: 18px">{{ this.name }}</div>
         <ul>
-          <li><router-link to="/Home"><a>主页</a></router-link></li>
-          <li><router-link to="/UserTable"><a>用户管理</a></router-link></li>
-          <li><router-link to="/PointTable"><a>地图点管理</a></router-link></li>
-          <li><router-link to="/AbstractTable"><a>详情页管理</a></router-link></li>
-          <li><router-link to="/AddPoint"><a>添加地图点</a></router-link></li>
-          <li><router-link to="/PickPoint"><a>坐标拾取</a></router-link></li>
+          <li>
+            <router-link to="/Home"><a>主页</a></router-link>
+          </li>
+          <li>
+            <router-link to="/UserTable"><a>用户管理</a></router-link>
+          </li>
+          <li>
+            <router-link to="/PointTable"><a>地图点管理</a></router-link>
+          </li>
+          <li>
+            <router-link to="/AbstractTable"><a>详情页管理</a></router-link>
+          </li>
+          <li>
+            <router-link to="/AddPoint"><a>添加地图点</a></router-link>
+          </li>
+          <li>
+            <router-link to="/PickPoint"><a>坐标拾取</a></router-link>
+          </li>
         </ul>
       </nav>
     </header>
 
     <div class="body">
       <section class="content">
-        <article ref="target">
-        </article>
+        <article ref="target"></article>
         <aside>
           <heart :times="like_times"></heart>
           <el-divider></el-divider>
-          <img :src="panel_imgURL_top">
-          <img :src="panel_imgURL_bottom">
+          <img :src="panel_imgURL_top" />
+          <img :src="panel_imgURL_bottom" />
           <el-divider></el-divider>
         </aside>
       </section>
@@ -36,14 +50,15 @@
 
 <script>
 import $ from 'jquery'
-import Heart from '@/components/Heart.vue';
+import Heart from '@/components/Heart.vue'
 export default {
   components: { Heart },
   data() {
     return {
       name: '东湖樱园',
       like_times: 0,
-      background_image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/yinghua/%E5%A0%A4%E8%A7%92%E5%85%AC%E5%9B%AD%E6%A8%B1%E8%8A%B13.jpg',
+      background_image:
+        'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/yinghua/%E5%A0%A4%E8%A7%92%E5%85%AC%E5%9B%AD%E6%A8%B1%E8%8A%B13.jpg',
       content: ``,
       panel_imgURL_top: '',
       panel_imgURL_bottom: '',
@@ -52,44 +67,46 @@ export default {
   mounted() {
     $(window).scroll(function () {
       if ($(window).scrollTop() >= 300) {
-        $('nav').addClass('fixed-header');
-        $('nav div').addClass('visible-title');
+        $('nav').addClass('fixed-header')
+        $('nav div').addClass('visible-title')
+      } else {
+        $('nav').removeClass('fixed-header')
+        $('nav div').removeClass('visible-title')
       }
-      else {
-        $('nav').removeClass('fixed-header');
-        $('nav div').removeClass('visible-title');
-      }
-    });
+    })
   },
   created() {
     console.log(this.$route.params.id)
-    this.$axios.get('http://127.0.0.1:8000/abstract_content/' + this.$route.params.id).then((res) => {
-      this.name = res.data.name;
-      this.background_image = res.data.background_image;
-      this.content = res.data.article_content;
-      console.log(this.content)
-      this.$refs.target.innerHTML += this.content;
-      this.panel_imgURL_top = res.data.panel_imgURL_top;
-      this.panel_imgURL_bottom = res.data.panel_imgURL_bottom;
-      this.like_times = res.data.like_times;
-    }).catch(err => {
-      console.log(err);
-      this.$message.error('数据载入失败，请检查网络！');
-    })
-  }
+    this.$axios
+      .get('http://127.0.0.1:8000/abstract_content/' + this.$route.params.id)
+      .then((res) => {
+        this.name = res.data.name
+        this.background_image = res.data.background_image
+        this.content = res.data.article_content
+        console.log(this.content)
+        this.$refs.target.innerHTML += this.content
+        this.panel_imgURL_top = res.data.panel_imgURL_top
+        this.panel_imgURL_bottom = res.data.panel_imgURL_bottom
+        this.like_times = res.data.like_times
+      })
+      .catch((err) => {
+        console.log(err)
+        this.$message.error('数据载入失败，请检查网络！')
+      })
+  },
 }
 </script>
 
 <style scoped>
 .Abstract {
-  font-family: "PingFang SC";
+  font-family: 'PingFang SC';
 }
 
 /* resets */
 .body {
   margin: 0px;
   padding: 0px;
-  overflow: hidden
+  overflow: hidden;
 }
 
 /* main */
@@ -217,17 +234,17 @@ p img {
   }
 }
 
-article>>>p img {
+article >>> p img {
   width: 660px;
   height: 400px;
   object-fit: cover;
 }
 
-article>>>p {
+article >>> p {
   margin-bottom: 10px;
 }
 
-article>>>h1 {
+article >>> h1 {
   font-size: 22px;
   margin-bottom: 10px;
 }
