@@ -1,24 +1,5 @@
-# “江城寻花”武汉赏花游览系统后台管理部分
+# “江城寻花”赏花游览系统
 
-## Project setup
-```
-npm install
-```
+VUE+FastAPI开发的武汉市赏花游览推荐系统 <br/>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[前台](https://github.com/weltme/WH_Flower_frontend)|[管理](https://github.com/weltme/WH_flower_management)|[后端API](https://github.com/weltme/WH_Flower_backend)
